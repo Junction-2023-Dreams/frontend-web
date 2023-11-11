@@ -1,0 +1,8 @@
+.mat-tab-actions {
+  bottom: 0;
+  position: sticky;
+  padding: 10px;
+  border-radius: 8px;
+  z-index: 1;
+  box-shadow: 2px 2px 2px 2px #ccc;
+}

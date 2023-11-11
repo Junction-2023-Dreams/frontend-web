@@ -1,0 +1,13 @@
+<div class="vertical-layout">
+  <div class="button-row">
+    <div></div>
+    <button mat-flat-button color="primary" (click)="addMedication()">Add Medication</button>
+  </div>
+
+  <div class="medications-list">
+    <mat-accordion>
+      <app-medications-item *ngFor="let med of medications" [medication]="med"></app-medications-item>
+    </mat-accordion>
+  </div>
+
+</div>

@@ -1,0 +1,58 @@
+
+<mat-drawer-container>
+  <mat-drawer #drawer class="main-drawer"
+              mode="over"
+              (click)="drawer.toggle()"
+              [(opened)]="openNavbar">
+    <a [routerLink]="['dashboard']" class="navigation-logo" tabindex="-1">
+      <img src="assets/images/logo.png" alt="Logo">
+    </a>
+    <div class="main-drawer-menu">
+      <a [routerLink]="['dashboard']" [routerLinkActive]="['active-link']" tabindex="0">
+        <mat-icon>home</mat-icon>
+        <span>Dashboard</span>
+      </a>
+      <a [routerLink]="['your-health']" [routerLinkActive]="['active-link']" tabindex="0">
+        <mat-icon>monitor_heart</mat-icon>
+        <span>Your health</span>
+      </a>
+      <a [routerLink]="['medications']" [routerLinkActive]="['active-link']" tabindex="0">
+        <mat-icon>medication</mat-icon>
+        <span>Medications</span>
+      </a>
+      <a [routerLink]="['activities']" [routerLinkActive]="['active-link']" tabindex="0">
+        <mat-icon>hiking</mat-icon>
+        <span>Activities</span>
+      </a>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-toolbar>
+      <button mat-icon-button (click)="toggleNavbar()" class="toolbar-menu mobile-only" aria-label="Menu button">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1 class="">Soothify</h1>
+      <div class="spacer mobile-only"></div>
+      <div class="nav-menu desktop-only">
+        <a mat-button [routerLink]="['dashboard']" [routerLinkActive]="['active-link']">Dashboard</a>
+        <a mat-button [routerLink]="['your-health']" [routerLinkActive]="['active-link']">Your Health</a>
+        <a mat-button [routerLink]="['medications']" [routerLinkActive]="['active-link']">Medications</a>
+        <a mat-button [routerLink]="['activities']" [routerLinkActive]="['active-link']">Activities</a>
+      </div>
+      <div class="user-menu">
+        <button mat-stroked-button class="user-menu-open-button"
+                [matMenuTriggerFor]="menu"
+                aria-label="Toolbar user profile">
+          {{authService.firstname + " " + authService.lastname}}
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="openSettings()">Settings</button>
+          <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+    <main class="navigation-content padding">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-drawer-content>
+</mat-drawer-container>

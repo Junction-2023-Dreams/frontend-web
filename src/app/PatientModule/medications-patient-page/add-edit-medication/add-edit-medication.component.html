@@ -1,0 +1,28 @@
+<div class="add-edit-container">
+  <h1 mat-dialog-title>{{data.title}}</h1>
+  <div mat-dialog-content class="padding">
+    <mat-form-field appearance="outline">
+      <mat-label>Medication name</mat-label>
+      <input matInput type="text" placeholder="Medication name"
+             [matAutocomplete]="auto">
+      <mat-autocomplete [displayWith]="displayMedicationFn" autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="select($event)">
+        <mat-option *ngFor="let med of availableMedications" [value]="med">{{med.name || ''}}</mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input matInput type="text" placeholder="1 pill / 10mg" [value]="selectedMedication.amount">
+    </mat-form-field>
+    <div class="med-information" *ngIf="selectedMedication.sideeffects">
+      <span class="warning-color">Information</span>
+      <!-- list of side effects -->
+      <ul>
+        <li *ngFor="let sideeffect of selectedMedication.sideeffects">{{sideeffect}}</li>
+      </ul>
+    </div>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button mat-stroked-button (click)="cancel()" [mat-dialog-close]="" [color]="data.cancelColor">{{data.cancelText || 'Cancel'}}</button>
+    <button mat-flat-button (click)="save()" [color]="data.saveColor" [mat-dialog-close]="" cdkFocusInitial>{{data.saveText || 'Confirm'}}</button>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<mat-expansion-panel (opened)="panelOpenState = true"
+                     (closed)="panelOpenState = false">
+  <mat-expansion-panel-header>
+    <mat-panel-title style="font-weight: 500;">
+      {{medication.name}}
+    </mat-panel-title>
+    <mat-panel-description>
+      {{medication.amount}}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <div class="med-information" *ngIf="medication.sideeffects">
+    <span class="warning-color">Information</span>
+    <!-- list of side effects -->
+    <ul>
+      <li *ngFor="let sideeffect of medication.sideeffects">{{sideeffect}}</li>
+    </ul>
+  </div>
+</mat-expansion-panel>

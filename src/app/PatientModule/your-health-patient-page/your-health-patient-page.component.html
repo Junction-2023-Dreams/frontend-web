@@ -1,0 +1,21 @@
+<div class="vertical-layout" style="height: 100%; position: relative">
+  <mat-tab-group style="height: 100%;">
+    <mat-tab label="Front" #frontRef>
+      <div class="mat-tab-content">
+        <app-select-pain-position [inputFile]="'assets/images/front.png'" [isSelected]="frontRef.isActive" [(painSpots)]="painSpotsFront">
+        </app-select-pain-position>
+      </div>
+    </mat-tab>
+    <mat-tab label="Back" #backRef>
+      <app-select-pain-position [inputFile]="'assets/images/back.png'" [isSelected]="backRef.isActive" [(painSpots)]="painSpotsBack">
+      </app-select-pain-position>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<div class="mat-tab-actions full-width button-row">
+  <div class="horizontal-container right-aligned">
+    <button mat-button color="primary" (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
+  </div>
+</div>

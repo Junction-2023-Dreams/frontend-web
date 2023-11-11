@@ -1,0 +1,10 @@
+<mat-card class="medication">
+  <div class="medication-overview">
+    <span class="medication-name">{{medication.name}}</span>
+    <div class="medication-information">
+      <span class="medication-dosage">{{medication.amount || "0mg"}}</span>
+      <span class="medication-frequency">{{medication.frequency}}</span>
+    </div>
+  </div>
+  <button mat-stroked-button color="warn" style="margin: auto 10px auto auto;">Take</button>
+</mat-card>

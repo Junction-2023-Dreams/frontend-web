@@ -1,0 +1,29 @@
+<div class="centered-container abs-center padding--large">
+  <div class="role-selection vertical-stretch-layout" *ngIf="showRoleSelection">
+    <mat-card (click)="selectPatient()">
+      <mat-icon>personal_injury</mat-icon>
+      <span>Patient</span>
+    </mat-card>
+    <mat-card (click)="selectDoctor()">
+      <mat-icon>medication</mat-icon>
+      <span>Doctor</span>
+    </mat-card>
+  </div>
+  <div class="login-form vertical-stretch-layout" *ngIf="showLogin">
+    <h1 class="center-text">Login</h1>
+    <span class="center-text">{{role || 'Patient'}}</span>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" placeholder="Email">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" placeholder="Password">
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" (click)="login()">Login</button>
+    <button mat-stroked-button color="primary" (click)="back()">Back</button>
+  </div>
+
+</div>

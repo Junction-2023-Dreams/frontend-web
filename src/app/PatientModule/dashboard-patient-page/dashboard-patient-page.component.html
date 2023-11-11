@@ -1,0 +1,8 @@
+<link rel="stylesheet" href="selectable-medication-item/selectable-medication-item.component.css">
+<div class="vertical-layout padding">
+  <h4>Hey {{this.authService.firstname + " " + this.authService.lastname}},</h4>
+  <span>Here are you medications for today:</span>
+  <div class="medications-list">
+    <app-selectable-medication-item  (click)="takeMedication(med)" *ngFor="let med of todaysMedications" [medication]="med"></app-selectable-medication-item>
+  </div>
+</div>
