@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">junctionfrontend</string>
+    <string name="title_activity_main">junctionfrontend</string>
+    <string name="package_name">com.soothify.app</string>
+    <string name="custom_url_scheme">com.soothify.app</string>
+</resources>
