@@ -3,8 +3,14 @@
   <h4>Hey {{this.authService.firstname + " " + this.authService.lastname}},</h4>
   <span>Here are you medications for today:</span>
   <div class="medications-list">
+    <div *ngIf="todaysMedications.length == 0" style="color: #868686">
+      <div class="center-text">You have no medications for today.</div>
+    </div>
     <app-selectable-medication-item  (click)="takeMedication(med)" *ngFor="let med of todaysMedications" [medication]="med"></app-selectable-medication-item>
   </div>
 </div>
+<mat-divider></mat-divider>
+<div class="padding--large">
 
-<app-chart-patient-page></app-chart-patient-page>
+  <app-chart-patient-page></app-chart-patient-page>
+</div>

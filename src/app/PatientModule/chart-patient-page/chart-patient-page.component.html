@@ -1,8 +1,8 @@
 <div class="vertical-layout">
-  <div class="button-row">
-    <mat-form-field appearance="outline">
+  <div class="button-row" style="align-items: baseline;">
+    <mat-form-field appearance="outline" subscriptSizing="dynamic">
       <mat-label>Choose an option</mat-label>
-      <mat-select>
+      <mat-select [(value)]="selected">
         <mat-option value="option1">Heartrate History</mat-option>
         <mat-option value="option2">Activity History</mat-option>
       </mat-select>
@@ -13,6 +13,6 @@
     </button>
   </div>
   <div class="chart">
-
+    <canvasjs-chart [options]="chartOptions"></canvasjs-chart>
   </div>
 </div>
