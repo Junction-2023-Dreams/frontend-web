@@ -1,7 +1,10 @@
 import {Injectable} from "@angular/core";
-import {Observable, of} from "rxjs";
+import {first, Observable, of, throwError} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {environment} from "@environments/environment";
+import {jwtDecode} from "jwt-decode";
+import {ErrorService} from "@app/_services/error.service";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -10,25 +13,38 @@ export class AuthService {
     constructor(
       private http: HttpClient,
       private router: Router,
+      private errorService: ErrorService
     ) {
     }
 
     login(username: string, password: string, role: string): Observable<any> {
-        localStorage.setItem('token', username);
-        localStorage.setItem('username', username);
-        localStorage.setItem('userId', username);
-        localStorage.setItem('role', role);
-        localStorage.setItem('firstname', "John");
-        localStorage.setItem('lastname', "Doe");
 
-
-        return of(null);
-        // connect with backend
-        return this.http.post<any>(`/api/auth/login`, {
-            "username": username,
-            "password": password,
-            "role": role
+        let observable: Observable<any> = this.http.post<any>(`${environment.apiUrl}/login`, {
+            "email": username,
+            "password": password
         });
+        observable.pipe(first()).subscribe(data => {
+            console.log(data)
+            const token = data['token'];
+            const email = data['email'];
+            const firstname = data['firstname'];
+            const lastname = data['lastname'];
+            const roleData = data['role'];
+            const userId = data['ID'];
+            if(role !== roleData) {
+                this.errorService.showErrorSnackbar('Could not find user with this role ' + role);
+                return
+            }
+            localStorage.setItem('token', token);
+            localStorage.setItem('username', email);
+            localStorage.setItem('userId', userId);
+            localStorage.setItem('role', role);
+            localStorage.setItem('firstname', firstname);
+            localStorage.setItem('lastname', lastname);
+            this.router.navigateByUrl(role.toLowerCase())
+        });
+
+        return observable;
     }
 
     logout() {
@@ -66,4 +82,7 @@ export class AuthService {
         return localStorage.getItem('lastname');
     }
 
+    get userId() {
+        return localStorage.getItem('userId');
+    }
 }

@@ -1,0 +1,17 @@
+<mat-card class="activity-card">
+  <div class="header">
+    <img mat-card-avatar src="{{activity.imageUrl}}"  class="image-contain" alt="Photo of a Shiba Inu">
+    <div class="information">
+      <span class="title ellipsis">{{activity.name || "Title"}}</span>
+      <span class="subtitle ellipsis">{{activity.startTime | date: 'dd-MM-yyyy, hh:mm' }}</span>
+    </div>
+  </div>
+  <mat-card-actions class="full-width">
+    <div class="button-row full-width">
+      <div></div>
+      <div class="button-row">
+        <button mat-stroked-button color="primary" (click)="signupClick()">Register</button>
+      </div>
+    </div>
+  </mat-card-actions>
+</mat-card>

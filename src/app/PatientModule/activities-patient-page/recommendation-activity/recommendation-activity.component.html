@@ -1,0 +1,20 @@
+<mat-card class="recommendation-card">
+  <mat-card-header>
+    <mat-card-title>{{activity.name || "Title"}}</mat-card-title>
+    <mat-card-subtitle>{{activity.startTime | date: 'dd-MM-yyyy, hh:mm' }}</mat-card-subtitle>
+  </mat-card-header>
+  <div class="img-container">
+    <img mat-card-image src="{{activity.imageUrl}}" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      {{activity.location || "Location"}}
+    </mat-card-content>
+  </div>
+  <mat-card-actions class="full-width">
+    <div class="button-row full-width">
+      <div></div>
+      <div class="button-row">
+        <button mat-stroked-button color="primary" (click)="cancelRegistration()">Cancel Registration</button>
+      </div>
+    </div>
+  </mat-card-actions>
+</mat-card>

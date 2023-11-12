@@ -1,11 +1,14 @@
-<div #selectPainContainer class="select-pain-container" (click)="selectPosition($event)">
-    <img [src]="inputFile" alt="image" class="img-fluid" *ngIf="inputFile"/>
+<div #selectPainContainer class="select-pain-container" (click)="selectPosition($event)" style="display: flex">
+    <div style="width: 100%; display: flex; align-items: center">
+        <img [src]="inputFile" alt="image" class="img-fluid" *ngIf="inputFile" style="width: 100%"/>
+    </div>
     <div *ngFor="let c of painSpots"
          class="click-selector"
          [ngStyle]="{
     'position': 'absolute',
-    'left': (c.clickX * innerWidth - 5) + 'px',
-    'top': (c.clickY * innerHeight - 5) + 'px',
+    'left': (c.posX * innerWidth - 5) + 'px',
+    'top': (c.posY * innerHeight - 5) + 'px',
+    'filter': 'blur(5px)',
     }">
 
     </div>

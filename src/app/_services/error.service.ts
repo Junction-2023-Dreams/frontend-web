@@ -18,7 +18,7 @@ export class ErrorService {
       } else {
         switch (error.status) {
           case 400:
-            this.showErrorSnackbar("ERROR: 0003 - " + error.error.message);
+            this.showErrorSnackbar("ERROR: 0003 - " + error.error.error.message);
             break;
           case 401:
             this.showErrorSnackbar("ERROR: 0004 - Unauthorized.");

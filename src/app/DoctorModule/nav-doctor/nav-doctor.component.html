@@ -4,14 +4,11 @@
               mode="over"
               (click)="drawer.toggle()"
               [(opened)]="openNavbar">
-    <a [routerLink]="['dashboard']" class="navigation-logo" tabindex="-1">
+    <a [routerLink]="['patients']" class="navigation-logo" tabindex="-1">
       <img src="assets/images/logo.png" alt="Logo">
     </a>
     <div class="main-drawer-menu">
-      <a [routerLink]="['dashboard']" [routerLinkActive]="['active-link']" tabindex="0">
-        <mat-icon>home</mat-icon>
-        <span>Dashboard</span>
-      </a>
+
       <a [routerLink]="['patients']" [routerLinkActive]="['active-link']" tabindex="0">
         <mat-icon>personal_injury</mat-icon>
         <span>Patients</span>
@@ -30,7 +27,6 @@
       <h1 class="">Soothify</h1>
       <div class="spacer mobile-only"></div>
       <div class="nav-menu desktop-only">
-        <a mat-button [routerLink]="['dashboard']" [routerLinkActive]="['active-link']">Dashboard</a>
         <a mat-button [routerLink]="['patients']" [routerLinkActive]="['active-link']">Patients</a>
         <a mat-button [routerLink]="['detection']" [routerLinkActive]="['active-link']">Warn-O-Meter</a>
       </div>
@@ -45,7 +41,7 @@
         </mat-menu>
       </div>
     </mat-toolbar>
-    <main class="navigation-content">
+    <main class="navigation-content padding">
       <router-outlet></router-outlet>
     </main>
   </mat-drawer-content>

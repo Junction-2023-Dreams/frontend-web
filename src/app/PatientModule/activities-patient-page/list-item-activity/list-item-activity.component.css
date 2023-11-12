@@ -1,0 +1,67 @@
+.activity-card {
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  > * {
+    flex: 1;
+  }
+  height: 64px;
+  padding: 8px;
+  background-color: var(--surface-color);
+  color: var(--on-surface-color);
+  cursor: pointer;
+  &:hover {
+    background-color: var(--surface-color-dark);
+  }
+}
+.header {
+  overflow:hidden;;
+  flex: 1 1 0px;
+  min-width: 0px;
+  display: flex;
+  flex-flow: row;
+  gap: 10px;
+  align-items: center;
+  > img {
+    margin: auto 0 auto auto;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+  }
+}
+mat-card-actions {
+  flex: 0 0 auto !important;
+  display: flex;
+  flex-flow: row;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  width: 120px;
+}
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+}
+.information {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  flex: 1;
+  min-width: 0px;
+  margin-left: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.subtitle {
+  opacity: 0.6;
+}
+@media screen and (max-width: 450px) {
+  img {
+    display: none;
+  }
+}

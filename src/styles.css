@@ -1,23 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --primary-color: #1976d2;
-  --primary-color-light: #63a4ff;
-  --primary-color-dark: #004ba0;
-  --secondary-color: #c2185b;
-  --secondary-color-light: #fa5788;
-  --secondary-color-dark: #8c0032;
+  --primary-color: #00344d;
+  --primary-color-light: #035f8b;
+  --primary-color-dark: #02283a;
+  --secondary-color: #ffb59d;
+  --secondary-color-light: #ffbca5;
+  --secondary-color-dark: #ff9f84;
   --on-primary-color: #fff;
   --on-secondary-color: #fff;
-  --error-color: #d00020;
-  --on-error-color: #fff;
-  --surface-color: #fff;
-  --on-surface-color: #000;
-  --background-color: #fff;
-  --on-background-color: #000;
-  --surface-color-dark: #f5f5f5;
+  --error-color: #f3000f;
+  --on-error-color: #ffdad6;
+  --surface-color: #2c3134;
+  --on-surface-color: #e2e2e5;
+  --background-color: #191c1e;
+  --on-background-color: #e2e2e5;
+  --surface-color-dark: #283033;
+  --surface-color-light: #3e4449;
 
 }
-html, body { height: 100%; }
+html, body {
+  background-color: var(--background-color);
+  color: var(--on-background-color);
+  height: 100%; }
 * { box-sizing: border-box; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .centered-container {
@@ -38,9 +42,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   padding: 40px 40px;
   margin-top: 40px;
   margin-bottom: 40px;
-  background-color: #fff;
+  background-color: var(--surface-color);
+  color: var(--on-surface-color);
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+mat-card {
+  background-color: var(--surface-color);
+  color: var(--on-surface-color);
 }
 .vertical-layout {
   display: flex;
@@ -89,9 +98,9 @@ mat-toolbar {
 .desktop-only {
   display: none !important;
 }
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 700px) {
   .desktop-only {
-    display: initial !important;
+    display: flex !important;
   }
   .mobile-only {
     display: none !important
@@ -135,14 +144,14 @@ mat-drawer {
 
   height: 45px;
   padding-left: 25px;
-  color: black;
+  color: var(--on-surface-color);
   text-decoration: none !important;
 }
 .main-drawer-menu > a:hover {
-  background-color: #00000055;
+  background-color: var(--surface-color-light);
 }
 .main-drawer-menu > a.active-link {
-  color: white;
+  background-color: var(--on-primary-color);
   background: var(--primary-color-light)
 }
 .main-drawer-menu > a.active-link:hover {
@@ -191,7 +200,7 @@ mat-toolbar {
   align-items: center;
 }
 .navigation-content {
-  overflow-y: hidden;
+  overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
   > *:not(router-outlet) {
@@ -215,11 +224,38 @@ mat-toolbar {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  background-color: white;
+  background-color: var(--surface-color);
   > * mat-form-field {
     width: 100%;
   }
 }
 .warning-color {
   color: var(--error-color);
+}
+.non-selectable, .non-selectable * {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.horizontal-list {
+  display: flex;
+  flex-flow: row;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  overflow-x: auto;
+}
+.image-contain {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.scrollable-y {
+  overflow-y: auto;
+}
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

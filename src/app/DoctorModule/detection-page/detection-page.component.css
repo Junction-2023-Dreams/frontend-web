@@ -1,0 +1,17 @@
+.detection {
+  padding: 20px;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+
+}
+.warning {
+  background-color: #efef00;
+  color: black;
+}
+.critical {
+  background-color: #dd0000;
+  color: white;
+
+}

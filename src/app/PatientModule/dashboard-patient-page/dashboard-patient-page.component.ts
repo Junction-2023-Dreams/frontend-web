@@ -10,11 +10,12 @@ import {MatCardModule} from "@angular/material/card";
 import {ApproveCancelDialogComponent} from "@app/_components/approve-cancel-dialog/approve-cancel-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {AuthService} from "@app/_services/auth.service";
+import {ChartPatientPageComponent} from "@app/PatientModule/chart-patient-page/chart-patient-page.component";
 
 @Component({
   selector: 'app-dashboard-patient-page',
   standalone: true,
-  imports: [CommonModule, MedicationsItemComponent, SelectableMedicationItemComponent, MatCardModule],
+  imports: [CommonModule, MedicationsItemComponent, SelectableMedicationItemComponent, MatCardModule, ChartPatientPageComponent],
   templateUrl: './dashboard-patient-page.component.html',
   styleUrl: './dashboard-patient-page.component.css'
 })

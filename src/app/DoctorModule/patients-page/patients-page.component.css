@@ -1,0 +1,6 @@
+tr.mat-mdc-row  {
+  cursor: pointer;
+  &:hover {
+    background-color: var(--surface-color-dark) !important;
+  }
+}

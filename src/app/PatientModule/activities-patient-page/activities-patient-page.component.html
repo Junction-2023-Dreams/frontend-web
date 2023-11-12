@@ -1,1 +1,31 @@
-<p>activities-patient-page works!</p>
+<div class="vertical-layout ">
+  <div class="centered-container padding--large" *ngIf="recommendations.length > 0">
+    <h4 class="center-text">Registered Activities</h4>
+  </div>
+  <div class="centered-container padding--large" *ngIf="recommendations.length === 0">
+    <h4 class="center-text">You are not yet registered to any activities</h4>
+  </div>
+  <div class="horizontal-list padding">
+    <app-recommendation-activity [activity]="activity" *ngFor="let activity of recommendations"
+                                 (click)="openActivity($event, activity)"
+                                 (cancelRegistrationEvent)="cancelRegistration($event)"
+                                 (buttonClick)="signUp(activity)"></app-recommendation-activity>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="activities-list-container">
+    <div class="button-row padding" style="align-items: center">
+      <mat-form-field appearance="outline" subscriptSizing="dynamic" (keyup)="search(searchText)">
+        <mat-icon matPrefix>search</mat-icon>
+        <mat-label>Search</mat-label>
+        <input matInput type="text" [(ngModel)]="searchText">
+      </mat-form-field>
+      <button mat-flat-button color="primary" (click)="openFilter()">
+        <mat-icon>filter_alt</mat-icon>
+        Filter
+      </button>
+    </div>
+    <div class="activities-list padding">
+      <app-list-item-activity [activity]="activity" *ngFor="let activity of searchedActivities" (click)="openActivity($event, activity)" (buttonClick)="signUp(activity)"></app-list-item-activity>
+    </div>
+  </div>
+</div>

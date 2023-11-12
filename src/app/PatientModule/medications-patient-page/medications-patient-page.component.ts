@@ -10,6 +10,7 @@ import {
   AddEditMedicationComponent
 } from "@app/PatientModule/medications-patient-page/add-edit-medication/add-edit-medication.component";
 import {PatientMedicationService} from "@app/_services/patient-medications.service";
+import {ApproveCancelDialogComponent} from "@app/_components/approve-cancel-dialog/approve-cancel-dialog.component";
 
 @Component({
   selector: 'app-medications-patient-page',
@@ -36,7 +37,32 @@ export class MedicationsPatientPageComponent implements OnInit {
   }
 
   updateMedications() {
-    this.medications = this.medService.readAll();
+    this.medService.readAll().subscribe((data: any) => {
+      this.medications = data.value || [];
+    })
+  }
+
+  deleteMedication(medication: any) {
+    this.dialog.open(ApproveCancelDialogComponent,
+      {
+        data: {
+          title: `Delete medication ${medication.name}?`,
+          description: `Are you sure you want to delete medication ${medication.name}?`,
+          cancelColor: '',
+          approveColor: 'warn',
+          cancelText: 'Cancel',
+          approveText: 'Delete',
+          onApprove: (item: any) => {
+            console.log(medication)
+            this.medService.delete(medication).subscribe((data: any) => {
+
+              this.updateMedications();
+            })
+          },
+          onCancel: (item: any) => {
+          }
+        }
+      });
   }
 
   addMedication() {
@@ -50,8 +76,9 @@ export class MedicationsPatientPageComponent implements OnInit {
           saveText: 'Add',
           onSave: (item: any) => {
             if(item.id === 0) return
-            this.medService.create(item);
-            this.updateMedications();
+            this.medService.create(item)?.subscribe((data: any) => {
+              this.updateMedications();
+            })
           }
         }
       });

@@ -11,11 +11,12 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MedicationsService} from "@app/_services/medications.service";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-add-edit-medication',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatDialogActions, MatDialogContent, MatDialogTitle, MatDialogClose, MatInputModule, MatDialogContainer, MatAutocompleteModule],
+  imports: [CommonModule, MatButtonModule, MatDialogActions, MatDialogContent, MatDialogTitle, MatDialogClose, MatInputModule, MatDialogContainer, MatAutocompleteModule, FormsModule],
   templateUrl: './add-edit-medication.component.html',
   styleUrl: './add-edit-medication.component.css'
 })
@@ -24,8 +25,9 @@ export class AddEditMedicationComponent implements OnInit {
   selectedMedication: any = {
     id: 0,
     name: '',
-    amount: '',
+    amount: undefined,
   }
+  medicationAmount = '';
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private medicationService: MedicationsService,
@@ -34,7 +36,9 @@ export class AddEditMedicationComponent implements OnInit {
 
   ngOnInit(): void {
     setTimeout(() => {
-      this.availableMedications = this.medicationService.readAll();
+      this.medicationService.readAll().subscribe((data: any) => {
+        this.availableMedications = data.value || [];
+      });
     });
   }
 
@@ -52,5 +56,9 @@ export class AddEditMedicationComponent implements OnInit {
   }
   displayMedicationFn(medication: any): string {
     return medication && medication.name ? medication.name : '';
+  }
+
+  changeAmount($event: KeyboardEvent) {
+    this.selectedMedication.amount = this.medicationAmount;
   }
 }

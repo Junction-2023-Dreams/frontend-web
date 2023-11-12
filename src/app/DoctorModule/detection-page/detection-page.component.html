@@ -1,1 +1,12 @@
-<p>detection-page works!</p>
+<div class="vertical-layout">
+  <mat-card class="detection critical">
+    <div class=" center-text">There are two patients without a heartbeat. Reaching out to emergency contacts...</div>
+  </mat-card>
+  <mat-card class="detection warning">
+    <div class=" center-text">There are multiple patients at risk of developing an addiction.</div>
+  </mat-card>
+  <div class="activities-list-container">
+    <app-patients-list [allPatients]="allPatients"></app-patients-list>
+  </div>
+
+</div>

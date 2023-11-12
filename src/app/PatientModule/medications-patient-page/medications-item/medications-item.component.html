@@ -11,8 +11,15 @@
   <div class="med-information" *ngIf="medication.sideeffects">
     <span class="warning-color">Information</span>
     <!-- list of side effects -->
-    <ul>
-      <li *ngFor="let sideeffect of medication.sideeffects">{{sideeffect}}</li>
-    </ul>
+    <p>
+      {{medication.sideeffects}}
+    </p>
+  </div>
+  <div class="button-row">
+    <div></div>
+    <div>
+      <button mat-flat-button (click)="editMedication(medication)">Edit</button>
+      <button mat-button color="warn" (click)="deleteMedication(medication)">Delete</button>
+    </div>
   </div>
 </mat-expansion-panel>

@@ -1,5 +1,8 @@
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 <div class="centered-container abs-center padding--large">
   <div class="role-selection vertical-stretch-layout" *ngIf="showRoleSelection">
+    <h1 class="center-text">Soothify</h1>
+    <span class="center-text">Please select your role</span>
     <mat-card (click)="selectPatient()">
       <mat-icon>personal_injury</mat-icon>
       <span>Patient</span>
@@ -14,12 +17,12 @@
     <span class="center-text">{{role || 'Patient'}}</span>
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput type="email" placeholder="Email">
+      <input matInput [(ngModel)]="emailValue" type="email" placeholder="Email">
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
-      <input matInput type="password" placeholder="Password">
+      <input matInput [(ngModel)]="passwordValue" type="password" placeholder="Password">
     </mat-form-field>
 
     <button mat-flat-button color="primary" (click)="login()">Login</button>

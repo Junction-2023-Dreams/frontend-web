@@ -1,0 +1,34 @@
+<div class="button-row padding" style="align-items: center">
+  <mat-form-field appearance="outline" subscriptSizing="dynamic" (keyup)="search(searchText)">
+    <mat-icon matPrefix>search</mat-icon>
+    <mat-label>Search</mat-label>
+    <input matInput type="text" [(ngModel)]="searchText">
+  </mat-form-field>
+</div>
+<div class="patients padding">
+  <table mat-table [dataSource]="searchedPatients"
+         matSort
+         (matSortChange)="sortData($event)"
+         class="mat-elevation-z8">
+
+    <ng-container matColumnDef="lastname">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef sortActionDescription="Sort by last name"> Last Name </th>
+      <td mat-cell  *matCellDef="let element"> {{element.lastname}} </td>
+    </ng-container>
+    <ng-container matColumnDef="firstname">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef sortActionDescription="Sort by first name"> First Name </th>
+      <td mat-cell  *matCellDef="let element" > {{element.firstname}} </td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell  mat-sort-header *matHeaderCellDef sortActionDescription="Sort by email"> Email </th>
+      <td mat-cell  *matCellDef="let element" > {{element.email}} </td>
+    </ng-container>
+    <ng-container matColumnDef="risk">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef sortActionDescription="Sort by risk"> Addiction Risk </th>
+      <td mat-cell  *matCellDef="let element"> {{element.risk}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

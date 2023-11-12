@@ -9,16 +9,16 @@
         <mat-option *ngFor="let med of availableMedications" [value]="med">{{med.name || ''}}</mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" (keyup)="changeAmount($event)">
       <mat-label>Amount</mat-label>
-      <input matInput type="text" placeholder="1 pill / 10mg" [value]="selectedMedication.amount">
+      <input matInput type="text" placeholder="1 pill / 10mg" [(ngModel)]="medicationAmount" [value]="selectedMedication.defaultAmount ? selectedMedication.defaultAmount : ''">
     </mat-form-field>
     <div class="med-information" *ngIf="selectedMedication.sideeffects">
       <span class="warning-color">Information</span>
       <!-- list of side effects -->
-      <ul>
-        <li *ngFor="let sideeffect of selectedMedication.sideeffects">{{sideeffect}}</li>
-      </ul>
+      <p>
+        {{selectedMedication.sideeffects}}
+      </p>
     </div>
   </div>
   <div mat-dialog-actions align="end">

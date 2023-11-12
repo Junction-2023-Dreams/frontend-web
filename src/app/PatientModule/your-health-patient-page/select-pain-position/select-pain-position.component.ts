@@ -36,10 +36,9 @@ export class SelectPainPositionComponent implements OnChanges {
     this.clickY = $event.offsetY / this.innerHeight ;
 
     this.painSpots.push({
-      clickX: this.clickX,
-      clickY: this.clickY
+      posX: this.clickX,
+      posY: this.clickY
     });
-    console.log(this.clickX, this.clickY, $event.offsetX, $event.offsetY, this.innerWidth, this.innerHeight)
     this.painSpotsChange.emit(this.painSpots);
   }
 
@@ -53,7 +52,7 @@ export class SelectPainPositionComponent implements OnChanges {
       if(changes['isSelected']) {
         this.updateDimensions();
       }
-    }, 10);
+    }, 100);
   }
   updateDimensions() {
     if(this.image && this.isSelected) {

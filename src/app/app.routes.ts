@@ -9,7 +9,6 @@ import {DoctorGuard} from "./_helpers/guards/doctor.guard";
 import {PatientGuard} from "./_helpers/guards/patient.guard";
 import {LogoutPageComponent} from "@app/SharedModule/logout-page/logout-page.component";
 import {PatientsPageComponent} from "@app/DoctorModule/patients-page/patients-page.component";
-import {DashboardPageComponent} from "@app/DoctorModule/dashboard-page/dashboard-page.component";
 import {DetectionPageComponent} from "@app/DoctorModule/detection-page/detection-page.component";
 import {
   DashboardPatientPageComponent
@@ -23,6 +22,7 @@ import {
 import {
   ActivitiesPatientPageComponent
 } from "@app/PatientModule/activities-patient-page/activities-patient-page.component";
+import {ChartPatientPageComponent} from "@app/PatientModule/chart-patient-page/chart-patient-page.component";
 
 const PATIENT_ROUTES: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -32,10 +32,9 @@ const PATIENT_ROUTES: Routes = [
   { path: 'activities', component: ActivitiesPatientPageComponent, data: { title: 'Activities'}},
 ]
 const DOCTOR_ROUTES: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  { path: '', redirectTo: 'patients', pathMatch: 'full'},
   { path: 'patients', component: PatientsPageComponent, data: { title: 'Patients'}},
   { path: 'patients/:id', component: PatientsPageComponent, data: { title: 'Patients'}},
-  { path: 'dashboard', component: DashboardPageComponent, data: { title: 'Dashboard'}},
   { path: 'detection', component: DetectionPageComponent, data: { title: 'Detection'}}
 ]
 

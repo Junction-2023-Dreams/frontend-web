@@ -5,13 +5,16 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import {AuthService} from "../../_services/auth.service";
-import {first} from "rxjs";
+import {catchError, first} from "rxjs";
 import {Router} from "@angular/router";
+import {FormsModule} from "@angular/forms";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [CommonModule, MatInputModule, MatIconModule, MatButtonModule, MatCardModule],
+  imports: [CommonModule, MatInputModule, MatIconModule, MatButtonModule, MatCardModule, FormsModule, MatProgressBarModule],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css'
 })
@@ -19,6 +22,9 @@ export class LoginPageComponent {
   showRoleSelection: boolean = true;
   role: string = "Patient";
   showLogin: boolean = false;
+  emailValue: string = "";
+  passwordValue: string = "";
+  loading: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -41,10 +47,13 @@ export class LoginPageComponent {
   }
 
   login() {
-    this.authService.login("test", "test", this.role.toLowerCase()).pipe(first()).subscribe(
+    this.loading = true;
+    this.authService.login(this.emailValue, this.passwordValue, this.role.toLowerCase()).pipe(first()).subscribe(
       data => {
-        console.log(this.role.toLowerCase())
-        this.router.navigateByUrl(this.role.toLowerCase())
+        this.loading = false;
+      },
+      error => {
+        this.loading = false;
       });
   }
 

@@ -6,7 +6,7 @@
 
   <div class="medications-list">
     <mat-accordion>
-      <app-medications-item *ngFor="let med of medications" [medication]="med"></app-medications-item>
+      <app-medications-item *ngFor="let med of medications" [medication]="med" (deleteMedicationEvent)="deleteMedication($event)"></app-medications-item>
     </mat-accordion>
   </div>
 
